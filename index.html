@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqualeaf – Botella Inteligente Personalizable</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --pink: #f7d7e6;
+            --lilac: #e8e0f7;
+            --skyblue: #c8e6f7;
+            --mint: #bfe8d6;
+            --white: #fffaf8;
+            --text: #4a4a4a;
+            --dark: #222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--text);
+        }
+
+        header {
+            width: 100%;
+            padding: 1.2rem 3rem;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            backdrop-filter: blur(8px);
+        }
+
+        header h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+
+        .hero {
+            padding: 8rem 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--pink), var(--lilac), var(--skyblue));
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero-text h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-btn {
+            background: var(--mint);
+            padding: 1rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+        }
+
+        .hero img {
+            width: 350px;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
+        }
+
+        /* Carrusel */
+        .carousel {
+            width: 100%;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .carousel h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 2rem;
+            padding-bottom: 1rem;
+        }
+
+        .slide {
+            min-width: 300px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            scroll-snap-align: start;
+        }
+
+        .slide img {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        /* Beneficios */
+        .benefits {
+            padding: 4rem 2rem;
+            background: var(--lilac);
+        }
+
+        .benefit-boxes {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .benefit {
+            background: white;
+            padding: 2rem;
+            border-radius: 18px;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        /* Personalización */
+        .personaliza {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .personaliza h2 {
+            font-size: 2.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .customizer {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .preview {
+            text-align: center;
+        }
+
+        .preview img {
+            width: 280px;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
+        }
+
+        .options {
+            max-width: 300px;
+        }
+
+        .options h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-list img {
+            width: 70px;
+            margin: 8px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.2s;
+        }
+
+        .option-list img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Testimonios */
+        .testimonios {
+            padding: 5rem 2rem;
+        }
+
+        .testi-box {
+            background: white;
+            max-width: 350px;
+            padding: 1.5rem;
+            border-radius: 18px;
+            margin: 1rem auto;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .testi-box img {
+            width: 60px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        /* Planes */
+        .planes {
+            padding: 5rem 2rem;
+            background: var(--skyblue);
+        }
+
+        .plan-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .plan {
+            width: 280px;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        footer {
+            padding: 2rem;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Aqualeaf</h1>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-text">
+        <h2>¿Olvidas hidratarte durante el día? Aqualeaf te lo recuerda.</h2>
+        <p>Aqualeaf es una botella inteligente y sostenible que envía recordatorios, permite personalizar sabores y fomenta hábitos saludables sin esfuerzo.</p>
+        <button class="cta-btn">¡Comienza tu hidratación ahora!</button>
+    </div>
+
+    <img src="assets/img/botella-principal.png" alt="Botella Aqualeaf">
+</section>
+
+<!-- CARRUSEL -->
+<section class="carousel">
+    <h2>Qué hacemos, por qué y cómo lo hacemos</h2>
+
+    <div class="carousel-container">
+
+        <div class="slide">
+            <img src="assets/img/botella-classic.png" alt="">
+            <h3>Qué hacemos</h3>
+            <p>Ayudamos a los jóvenes a mantener un hábito de hidratación constante mediante recordatorios inteligentes y personalización.</p>
+        </div>
+
+        <div class="slide">
+            <img src="assets/img/empaquetado.png" alt="">
+            <h3>Por qué lo hacemos</h3>
+            <p>Queremos motivar hábitos saludables y reducir el uso de plásticos desechables, cuidando la salud y el planeta.</p>
+        </div>
+
+        <div class="slide">
+            <img src="assets/img/filtro-frutas-rojas.png" alt="">
+            <h3>Cómo lo hacemos</h3>
+            <p>Combinamos tecnología y cápsulas naturales para que hidratarse sea fácil, divertido y personalizado.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="benefits">
+    <h2 style="text-align: center; margin-bottom: 2rem;">Beneficios de Aqualeaf</h2>
+
+    <div class="benefit-boxes">
+
+        <div class="benefit">
+            <h3>Recordatorios inteligentes</h3>
+            <p>Evita olvidos y mantén un hábito de hidratación constante.</p>
+        </div>
+
+        <div class="benefit">
+            <h3>Personalización total</h3>
+            <p>Diseña tu botella con colores, sabores y estilo propio.</p>
+        </div>
+
+        <div class="benefit">
+            <h3>Sostenible y reutilizable</h3>
+            <p>Reduce el consumo de plástico desechable.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- PERSONALIZACIÓN -->
+<section class="personaliza">
+    <h2>Personaliza tu Aqualeaf</h2>
+
+    <div class="customizer">
+
+        <!-- Vista previa -->
+        <div class="preview">
+            <img id="preview-img" src="assets/img/botella-mint.png" alt="">
+        </div>
+
+        <!-- Opciones -->
+        <div class="options">
+
+            <h3>Colores</h3>
+            <div class="option-list">
+                <img src="assets/img/botella-mint.png" onclick="cambiarImagen('botella-mint.png')">
+                <img src="assets/img/botella-rosa.png" onclick="cambiarImagen('botella-rosa.png')">
+                <img src="assets/img/botella-classic.png" onclick="cambiarImagen('botella-classic.png')">
+            </div>
+
+            <h3>Llanyards</h3>
+            <div class="option-list">
+                <img src="assets/img/lanyard.png" onclick="cambiarImagen('lanyard.png')">
+            </div>
+
+            <h3>Llaveros</h3>
+            <div class="option-list">
+                <img src="assets/img/llavero-antonia.png" onclick="cambiarImagen('llavero-antonia.png')">
+                <img src="assets/img/llavero-catalina.png" onclick="cambiarImagen('llavero-catalina.png')">
+                <img src="assets/img/llavero-florencia.png" onclick="cambiarImagen('llavero-florencia.png')">
+                <img src="assets/img/llavero-ignacia.png" onclick="cambiarImagen('llavero-ignacia.png')">
+            </div>
+
+            <button class="cta-btn" style="margin-top: 1rem;">Crear mi botella personalizada</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    function cambiarImagen(nombre) {
+        document.getElementById("preview-img").src = "assets/img/" + nombre;
+    }
+</script>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios">
+    <h2 style="text-align:center; margin-bottom: 2rem;">Opiniones de usuarios</h2>
+
+    <div class="testi-box">
+        <img src="https://i.pravatar.cc/150?img=47">
+        <p>"Desde que uso Aqualeaf no se me olvida tomar agua. Los recordatorios son súper útiles y me encanta personalizarla."</p>
+        <b>Valentina, 22 años</b>
+    </div>
+</section>
+
+<!-- PLANES -->
+<section class="planes">
+    <h2 style="text-align:center; margin-bottom: 2rem;">Elige tu plan</h2>
+
+    <div class="plan-container">
+
+        <div class="plan">
+            <h3>Aqualeaf estándar</h3>
+            <p>Botella inteligente sin cápsulas adicionales.</p>
+            <h2>$$</h2>
+            <button class="cta-btn">Comprar ahora</button>
+        </div>
+
+        <div class="plan">
+            <h3>Aqualeaf + cápsulas</h3>
+            <p>Incluye pack inicial de sabores naturales.</p>
+            <h2>$$$</h2>
+            <button class="cta-btn">Comenzar mi experiencia</button>
+        </div>
+
+        <div class="plan">
+            <h3>Accesorios y personalización</h3>
+            <p>Stickers, correas y diseños personalizados.</p>
+            <h2>$</h2>
+            <button class="cta-btn">Personalizar</button>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2025 Aqualeaf – Todos los derechos reservados.
+</footer>
+
+</body>
+</html>
+
